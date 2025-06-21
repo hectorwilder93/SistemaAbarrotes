@@ -17,7 +17,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::with('caracteristicas')->get();
+        $categorias = Categoria::with('caracteristica')->get();
 
         return view('categoria.index');
     }
@@ -35,7 +35,7 @@ class CategoriaController extends Controller
      */
     public function store(StoreCategoriaRequest $request)
     {
-         try {
+        try {
             DB::beginTransaction();
             $caracteristica = Caracteristica::create($request->validated());
             $caracteristica->categoria()->create([
