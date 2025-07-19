@@ -19,7 +19,7 @@ class CategoriaController extends Controller
     {
         $categorias = Categoria::with('caracteristica')->get();
 
-        return view('categoria.index');
+        return view('categoria.index',['categorias' => $categorias]);
     }
 
     /**
@@ -45,6 +45,8 @@ class CategoriaController extends Controller
                return redirect()->route('categoria.index')->with('success', 'Categoría creada exitosamente');
          } catch (Exception $e) {
             DB::rollBack();
+
+         return redirect()->route('categoria.index')->with('succes', 'Categoría registrada');
          }
     }
 
