@@ -9,7 +9,9 @@ Route::get('/', function () {
 
 Route::view('/panel','panel.index')->name('panel');
 
-Route::resource('categoria', categoriaController::class);
+Route::resource('categoria', categoriaController::class)->parameters([
+    'categoria'=>'categoria'
+]);
 
 Route::get('/login', function () {
     return view('auth.login');
